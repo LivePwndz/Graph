@@ -129,25 +129,25 @@ public class GraphRepresentationAndTraversal {
 			
 			boolean[] isVisited = new boolean[vertices.size()];
 			ArrayList<Integer> dfsOrder = new ArrayList<>();
-			Queue<Integer> stack = new ArrayDeque<Integer>();
+			Queue<Integer> queue = new ArrayDeque<Integer>();
 			int parent = root;
 			dfsOrder.add(parent);
 			
 			isVisited[vertices.indexOf(parent)] = true;
-			stack.add(parent);
+			queue.add(parent);
 			
-			while(!stack.isEmpty()){
-				parent = stack.peek();
+			while(!queue.isEmpty()){
+				parent = queue.peek();
 				int c = getUnVisitedConnectedChild(parent, isVisited);
 				
 				if(c != -1){
 					if(!isVisited[vertices.indexOf(c)]){
 						dfsOrder.add(c);
 						isVisited[vertices.indexOf(c)] = true;
-						stack.add(c);
+						queue.add(c);
 					}
 				}else{
-						stack.remove();
+						queue.remove();
 				}
 			}
 			
